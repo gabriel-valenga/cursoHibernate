@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import cursoHibernate.model.User;
+import cursoHibernate.model.UserAddress;
 import cursoHibernate.model.enums.MaritalStatus;
 
 public class UserTest {
@@ -19,10 +20,17 @@ public class UserTest {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		
-		try {		
-			User user1 = new User("Test", sdf.parse("21-07-1995"), MaritalStatus.MARRIED, 24 );
-			User user2 = new User("Test2", sdf.parse("24-11-1990"), MaritalStatus.SINGLE, 29);
-			User user3 = new User("Test3", sdf.parse("14-09-1984"), MaritalStatus.DIVORCED, 35);
+		try {
+			UserAddress address1 = new UserAddress("Street test1", 68, "Curitiba");
+			UserAddress address2 = new UserAddress("Street test2", 12, "São Paulo");
+			UserAddress address3 = new UserAddress("Street test3", 90, "Salvador");
+			
+			UserAddress address4 = new UserAddress("Street test4", 77, "São Paulo");
+			UserAddress address5 = new UserAddress("Street test5", 90, "Goiania");
+			
+			User user1 = new User("Test", sdf.parse("21-07-1995"), MaritalStatus.MARRIED, 24, address1 );
+			User user2 = new User("Test2", sdf.parse("24-11-1990"), MaritalStatus.SINGLE, 29, address2);
+			User user3 = new User("Test3", sdf.parse("14-09-1984"), MaritalStatus.DIVORCED, 35, address3);
 	
 	
 			SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -34,6 +42,9 @@ public class UserTest {
 			session.save(user3);
 			
 			session.getTransaction().commit();
+			
+			User thirdUserInserted = session.get(User.class, 3);
+			System.out.println(thirdUserInserted.getName());
 			session.close();
 		}
 		catch(ParseException e) {

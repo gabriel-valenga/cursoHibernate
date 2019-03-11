@@ -2,7 +2,10 @@ package cursoHibernate.model;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,23 +30,28 @@ public class User {
 	@Column(name = "marital_status")
 	private MaritalStatus status;
 	private Integer age;
-	
+	@Embedded
+	@AttributeOverride(name ="address", column= @Column(name = "residential_address"))
+	private UserAddress residentialAddress;
+		
 	public User() {
 	}
 	
-	public User(Integer id, String name, Date birthDate, MaritalStatus status, Integer age) {
+	public User(Integer id, String name, Date birthDate, MaritalStatus status, Integer age, UserAddress resAddress) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
 		this.status = status;
 		this.age = age;
+		this.residentialAddress = resAddress;
 	}
 	
-	public User(String name, Date birthDate, MaritalStatus status, Integer age) {
+	public User(String name, Date birthDate, MaritalStatus status, Integer age, UserAddress resAddress) {
 		this.name = name;
 		this.birthDate = birthDate;
 		this.status = status;
 		this.age = age;
+		this.residentialAddress = resAddress;
 	}
 
 	public Integer getId() {
@@ -85,5 +93,15 @@ public class User {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
+	public UserAddress getResidentialAddress() {
+		return residentialAddress;
+	}
+
+	public void setResidentialAddress(UserAddress residentialAddress) {
+		this.residentialAddress = residentialAddress;
+	}
+
+	
 
 }
