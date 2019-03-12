@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 
 import cursoHibernate.model.User;
 import cursoHibernate.model.UserAddress;
+import cursoHibernate.model.Vehicle;
 import cursoHibernate.model.enums.MaritalStatus;
 
 public class UserTest {
@@ -31,11 +32,18 @@ public class UserTest {
 			User user1 = new User("Test", sdf.parse("21-07-1995"), MaritalStatus.MARRIED, 24, address1 );
 			User user2 = new User("Test2", sdf.parse("24-11-1990"), MaritalStatus.SINGLE, 29, address2);
 			User user3 = new User("Test3", sdf.parse("14-09-1984"), MaritalStatus.DIVORCED, 35, address3);
-	
+			
+			//Vehicle fusca = new Vehicle("Fusca", 1966);
+			
+		//	user3.setVehicle(fusca);
+			user3.setVehicle(new Vehicle("Fusca", 1966));
+
 	
 			SessionFactory factory = new Configuration().configure().buildSessionFactory();
 			Session session = factory.openSession();
 			session.beginTransaction();
+			
+		//	session.save(fusca);
 					
 			session.save(user1);
 			session.save(user2);

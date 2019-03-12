@@ -16,6 +16,8 @@
         
         <!-- User-->
         <mapping class="cursoHibernate.model.User" />
+        <!-- Vehicle-->
+        <mapping class="cursoHibernate.model.Vehicle" />
         
     </session-factory>
 </hibernate-configuration>
