@@ -1,6 +1,8 @@
 package cursoHibernate.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
@@ -11,7 +13,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,8 +37,8 @@ public class User {
 	@Embedded
 	@AttributeOverride(name ="address", column= @Column(name = "residential_address"))
 	private UserAddress residentialAddress;
-	@OneToOne(cascade = CascadeType.ALL)
-	private Vehicle vehicle;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Vehicle> vehicles;;
 		
 	public User() {
 	}
@@ -104,13 +107,13 @@ public class User {
 	public void setResidentialAddress(UserAddress residentialAddress) {
 		this.residentialAddress = residentialAddress;
 	}
-
-	public Vehicle getVehicle() {
-		return vehicle;
+	
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public List<Vehicle> getVehicles() {
+		return vehicles;
 	}
-
+	
 }

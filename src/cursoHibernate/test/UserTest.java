@@ -3,6 +3,9 @@ package cursoHibernate.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.hibernate.Session;
@@ -33,21 +36,28 @@ public class UserTest {
 			User user2 = new User("Test2", sdf.parse("24-11-1990"), MaritalStatus.SINGLE, 29, address2);
 			User user3 = new User("Test3", sdf.parse("14-09-1984"), MaritalStatus.DIVORCED, 35, address3);
 			
-			//Vehicle fusca = new Vehicle("Fusca", 1966);
-			
-		//	user3.setVehicle(fusca);
-			user3.setVehicle(new Vehicle("Fusca", 1966));
 
-	
+			
+			List<Vehicle> vehicles = new ArrayList<>();
+			
+     		Vehicle fusca = new Vehicle("Fusca", 1966);
+			Vehicle voyage = new Vehicle("Voyage", 2012);
+
+			vehicles.add(fusca);
+			vehicles.add(voyage);
+			
+			user3.setVehicles(vehicles);
+			
+			
 			SessionFactory factory = new Configuration().configure().buildSessionFactory();
 			Session session = factory.openSession();
 			session.beginTransaction();
 			
-		//	session.save(fusca);
-					
 			session.save(user1);
 			session.save(user2);
 			session.save(user3);
+			
+	
 			
 			session.getTransaction().commit();
 			

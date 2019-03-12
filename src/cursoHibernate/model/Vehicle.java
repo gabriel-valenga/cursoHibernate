@@ -2,10 +2,13 @@ package cursoHibernate.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehicle implements Serializable {
@@ -16,7 +19,8 @@ public class Vehicle implements Serializable {
 	private Integer id;
 	private String model;
 	private Integer year;
-	@OneToOne(mappedBy="vehicle")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	public Vehicle() {
