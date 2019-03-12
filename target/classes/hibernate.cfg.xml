@@ -18,6 +18,15 @@
         <mapping class="cursoHibernate.model.User" />
         <!-- Vehicle-->
         <mapping class="cursoHibernate.model.Vehicle" />
+        <!-- Car-->
+        <mapping class="cursoHibernate.inheritance.Car" />
+        <!-- Motorcycle-->
+        <mapping class="cursoHibernate.inheritance.Motorcycle" />
+        <!-- Employee-->
+        <mapping class="cursoHibernate.model.Employee" />
+        <!-- Project-->
+        <mapping class="cursoHibernate.model.Project" />
+        
         
     </session-factory>
 </hibernate-configuration>

@@ -4,7 +4,6 @@ package cursoHibernate.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -12,6 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import cursoHibernate.inheritance.Car;
+import cursoHibernate.inheritance.Motorcycle;
 import cursoHibernate.model.User;
 import cursoHibernate.model.UserAddress;
 import cursoHibernate.model.Vehicle;
@@ -40,10 +41,13 @@ public class UserTest {
 			
 			List<Vehicle> vehicles = new ArrayList<>();
 			
-     		Vehicle fusca = new Vehicle("Fusca", 1966);
-			Vehicle voyage = new Vehicle("Voyage", 2012);
+     		Vehicle ninja = new Motorcycle("Ninja", 2010);
+			Vehicle voyage = new Car("Voyage", 2012);
+			
+			System.out.println(voyage.getModel());
+			
 
-			vehicles.add(fusca);
+			vehicles.add(ninja);
 			vehicles.add(voyage);
 			
 			user3.setVehicles(vehicles);
@@ -52,6 +56,7 @@ public class UserTest {
 			SessionFactory factory = new Configuration().configure().buildSessionFactory();
 			Session session = factory.openSession();
 			session.beginTransaction();
+			
 			
 			session.save(user1);
 			session.save(user2);
