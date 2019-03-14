@@ -15,6 +15,8 @@ public class CRUDEmployeeTest {
 		//update(1);
 		//delete(1);
 		
+		saveOrUpdate();
+		
 	}
 	
 	
@@ -68,6 +70,23 @@ public class CRUDEmployeeTest {
 		Employee emp = session.get(Employee.class, id);
 			
 		session.delete(emp);
+		
+		session.getTransaction().commit();
+		
+	}
+	
+	public static void saveOrUpdate() {
+		
+		Session session  = getSessionFactory().openSession();
+		
+		session.beginTransaction();
+		
+		Employee emp = new Employee("Edson", 1200.00);
+		Employee emp2 = session.get(Employee.class, 2);
+		emp2.setName("Gabriel");
+		
+		session.saveOrUpdate(emp);
+		session.saveOrUpdate(emp2);
 		
 		session.getTransaction().commit();
 		

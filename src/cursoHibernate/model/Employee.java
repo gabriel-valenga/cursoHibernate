@@ -49,6 +49,10 @@ public class Employee {
 	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
+	
+	public void setId(Integer id) {		
+		this.id = id;		
+	}
 
 	public Integer getId() {
 		return id;
@@ -61,5 +65,6 @@ public class Employee {
 	public void setProjects(List<Project> project) {
 		this.projects = project;
 	}
+
 
 }
